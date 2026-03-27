@@ -561,7 +561,7 @@ function MatchdaySection({
           <div className="mb-8">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/30">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-linear-to-br from-primary to-primary/70">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-linear-to-r from-primary to-primary/70">
                   <span className="text-sm font-bold text-primary-foreground">
                     {round.round === "semi"
                       ? "SF"
