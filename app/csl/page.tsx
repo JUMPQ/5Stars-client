@@ -266,8 +266,8 @@ export default function CSLPage() {
       <section className="w-full py-20 overflow-hidden md:py-32 lg:py-40">
         <div className=" container w-[95%] mx-auto relative px-4 md:px-6">
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[:4rem_4rem]  mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-          <motion.div                                                                                                                                                                                                                                                                                                                                                        
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto mb-12 text-center"
@@ -293,22 +293,22 @@ export default function CSLPage() {
       <section className="w-full py-20 md:py-32">
         <div className="container w-[95%] mx-auto px-4 md:px-6">
           <Tabs defaultValue="fixtures" className="w-full">
-            <TabsList className="flex flex-wrap justify-center w-full max-w-4xl gap-2 mx-auto mb-20 rounded-lg md:mb-0">
+            <TabsList className="flex flex-wrap justify-center w-full max-w-lg gap-2 mx-auto mb-20 rounded-lg md:mb-0">
               <TabsTrigger
                 value="fixtures"
-                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
+                className="flex-1  w-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
                 Fixtures
               </TabsTrigger>
               <TabsTrigger
                 value="standings"
-                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
+                className="flex-1 w-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
                 Standings
               </TabsTrigger>
               <TabsTrigger
                 value="past"
-                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
+                className="flex-1 w-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
                 Results
               </TabsTrigger>
