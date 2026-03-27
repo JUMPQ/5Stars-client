@@ -118,7 +118,7 @@ export default function CSLPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          className="max-w-sm p-6 mx-auto text-white shadow-2xl bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl"
+          className="max-w-sm p-6 mx-auto text-white shadow-2xl bg-linear-to-r from-yellow-500 to-orange-500 rounded-2xl"
         >
           <div className="flex items-start gap-4">
             <Clock className="w-8 h-8" />
@@ -265,9 +265,9 @@ export default function CSLPage() {
       {/* HERO SECTION - unchanged */}
       <section className="w-full py-20 overflow-hidden md:py-32 lg:py-40">
         <div className=" container w-[95%] mx-auto relative px-4 md:px-6">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-
-          <motion.div
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[:4rem_4rem]  mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+          <motion.div                                                                                                                                                                                                                                                                                                                                                        
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto mb-12 text-center"
@@ -278,7 +278,7 @@ export default function CSLPage() {
             >
               Corporate Stars League
             </Badge>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-transparent md:text-5xl lg:text-6xl bg-clip-text bg-gradient-to-r from-foreground to-foreground/70">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-transparent md:text-5xl lg:text-6xl bg-clip-text bg-linear-to-r from-foreground to-foreground/70">
               Corporate Stars League
             </h1>
             <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl text-muted-foreground">
@@ -293,31 +293,35 @@ export default function CSLPage() {
       <section className="w-full py-20 md:py-32">
         <div className="container w-[95%] mx-auto px-4 md:px-6">
           <Tabs defaultValue="fixtures" className="w-full">
-            <TabsList className="flex flex-wrap justify-center w-full max-w-4xl gap-2 mx-auto mb-20 rounded-lg md:mb-0 bg-muted   ">
+            <TabsList className="flex flex-wrap justify-center w-full max-w-4xl gap-2 mx-auto mb-20 rounded-lg md:mb-0">
               <TabsTrigger
                 value="fixtures"
-                className="flex-1 min-w-[100px] max-w-[150px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-6 text-sm font-medium"
+                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
                 Fixtures
               </TabsTrigger>
               <TabsTrigger
                 value="standings"
-                className="flex-1 min-w-[100px] max-w-[150px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
+                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
                 Standings
               </TabsTrigger>
               <TabsTrigger
                 value="past"
-                className="flex-1 min-w-[100px] max-w-[150px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
+                className="flex-1 min-w-25 max-w-37.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md h-10 text-sm font-medium"
               >
-               Results
+                Results
               </TabsTrigger>
             </TabsList>
 
             {/* UPDATED FIXTURES TAB - Shows ALL rounds */}
             <TabsContent value="fixtures" className="space-y-12">
               {ALL_MATCHES.map((round) => (
-                <MatchdaySection key={round.id} round={round} showScores={false} />
+                <MatchdaySection
+                  key={round.id}
+                  round={round}
+                  showScores={false}
+                />
               ))}
             </TabsContent>
 
@@ -325,7 +329,11 @@ export default function CSLPage() {
             <TabsContent value="past" className="space-y-12">
               {ALL_MATCHES.filter((r) => r.status === "completed").map(
                 (round) => (
-                  <MatchdaySection key={round.id} round={round} showScores={true}/>
+                  <MatchdaySection
+                    key={round.id}
+                    round={round}
+                    showScores={true}
+                  />
                 ),
               )}
             </TabsContent>
@@ -333,12 +341,12 @@ export default function CSLPage() {
             {/* STANDINGS - unchanged */}
             <TabsContent value="standings">
               <div className="max-w-5xl mx-auto space-y-12">
-                <div>
-                  <h2 className="mb-6 text-2xl font-bold text-center text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text">
+                <div className="mt-3">
+                  <h2 className="mb-6 text-2xl font-bold text-center text-transparent bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text">
                     Group 1 • Capital Territory
                   </h2>
                   <div className="px-4 -mx-4 overflow-x-auto md:mx-0 md:px-0">
-                    <div className="min-w-[600px] md:min-w-0">
+                    <div className="min-w-150 md:min-w-0">
                       <Card className="shadow-lg border-border/40">
                         <CardContent className="p-4 md:p-8">
                           <Table>
@@ -410,11 +418,11 @@ export default function CSLPage() {
                 </div>
 
                 <div>
-                  <h2 className="mb-6 text-2xl font-bold text-center text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text">
+                  <h2 className="mb-6 text-2xl font-bold text-center text-transparent bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text">
                     Group 2 • Federal Territory
                   </h2>
                   <div className="px-4 -mx-4 overflow-x-auto md:mx-0 md:px-0">
-                    <div className="min-w-[600px] md:min-w-0">
+                    <div className="min-w-150 md:min-w-0">
                       <Card className="shadow-lg border-border/40">
                         <CardContent className="p-4 md:p-8">
                           <Table>
@@ -504,12 +512,36 @@ export default function CSLPage() {
 
 // ───── NEW REUSABLE COMPONENTS ─────
 // ───── UPDATED MatchdaySection ─────
-function MatchdaySection({ round, showScores = false }: { 
-  round: Match; 
-  showScores?: boolean;   // New prop: true = show scores (Past tab), false = show VS (Fixtures tab)
+function MatchdaySection({
+  round,
+  showScores = false,
+}: {
+  round: Match;
+  showScores?: boolean; // New prop: true = show scores (Past tab), false = show VS (Fixtures tab)
 }) {
   const isCompleted = round.status === "completed";
+  // Calculate date range for the header
+  const dates = round.matches
+    .map((m) => m.date || round.date) // Use per-match date if available
+    .filter(Boolean);
 
+  const uniqueDates = [...new Set(dates)].sort();
+
+  let headerDate = "";
+  if (uniqueDates.length === 1) {
+    // All matches on same date
+    headerDate = new Date(uniqueDates[0]).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  } else if (uniqueDates.length > 1) {
+    // Multiple dates → show range (e.g. 22 - 23 November 2025)
+    const first = new Date(uniqueDates[0]);
+    const last = new Date(uniqueDates[uniqueDates.length - 1]);
+
+    headerDate = `${first.getDate()} - ${last.getDate()} ${first.toLocaleString("en-GB", { month: "long" })} ${first.getFullYear()}`;
+  }
   return (
     <Card className="shadow-sm border-border/40 mt-6">
       <CardContent className="p-6">
@@ -522,25 +554,28 @@ function MatchdaySection({ round, showScores = false }: {
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           <div className="mb-8">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/30">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/70">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-linear-to-br from-primary to-primary/70">
                   <span className="text-sm font-bold text-primary-foreground">
-                    {round.round === "semi" ? "SF" : 
-                     round.round === "third" ? "3rd" : 
-                     round.round === "final" ? "F" : `GW${round.round}`}
+                    {round.round === "semi"
+                      ? "SF"
+                      : round.round === "third"
+                        ? "3rd"
+                        : round.round === "final"
+                          ? "F"
+                          : `GW${round.round}`}
                   </span>
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{round.name}</h3>
                   <p className="text-sm text-muted-foreground">
-                    {new Date(round.date).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })} • {isCompleted ? "Completed" : "Upcoming"}
+                    {headerDate}• {isCompleted ? "Completed" : "Upcoming"}
                   </p>
                 </div>
               </div>
@@ -553,7 +588,8 @@ function MatchdaySection({ round, showScores = false }: {
                   match={match}
                   roundType={round.round}
                   roundDate={round.date}
-                  showScores={showScores}   // ← Pass the flag
+                  matchDate={match.date}
+                  showScores={showScores} // ← Pass the flag
                 />
               ))}
             </div>
@@ -567,11 +603,13 @@ function MatchCard({
   match,
   roundType,
   roundDate,
+  matchDate,
   showScores = false,
 }: {
   match: any;
   roundType: Match["round"];
   roundDate: string;
+  matchDate?: string;
   showScores?: boolean;
 }) {
   const hasPenalties = match.penalties;
@@ -579,12 +617,16 @@ function MatchCard({
   // Decide what to show
   let scoreContent: React.ReactNode;
 
-  if (showScores && match.homeScore !== undefined && match.awayScore !== undefined) {
+  if (
+    showScores &&
+    match.homeScore !== undefined &&
+    match.awayScore !== undefined
+  ) {
     // Past Matches → Show score + penalties below
     scoreContent = (
       <>
         {/* Regular time score - stays inside the circle */}
-        <div className="flex items-center justify-center w-14 h-14 border-2 rounded-full bg-gradient-to-r from-primary/5 to-secondary/5 border-border/30 group-hover:border-primary/50">
+        <div className="flex items-center justify-center w-14 h-14 border-2 rounded-full bg-linear-to-r from-primary/5 to-secondary/5 border-border/30 group-hover:border-primary/50">
           <span className="text-xl font-bold tracking-tight">
             {match.homeScore} - {match.awayScore}
           </span>
@@ -597,9 +639,10 @@ function MatchCard({
               ({match.penalties.home} - {match.penalties.away} pens)
             </div>
             <div className="text-[10px] text-amber-600/80 font-medium">
-              {match.penalties.winner === "home" 
-                ? match.homeTeam.name 
-                : match.awayTeam.name} wins
+              {match.penalties.winner === "home"
+                ? match.homeTeam.name
+                : match.awayTeam.name}{" "}
+              wins
             </div>
           </div>
         )}
@@ -608,15 +651,18 @@ function MatchCard({
   } else {
     // Fixtures tab → Show "VS" inside the circle
     scoreContent = (
-      <div className="flex items-center justify-center w-14 h-14 border-2 rounded-full bg-gradient-to-r from-primary/5 to-secondary/5 border-border/30 group-hover:border-primary/50">
-        <span className="text-xl font-bold tracking-tight text-muted-foreground">VS</span>
+      <div className="flex items-center justify-center w-14 h-14 border-2 rounded-full bg-linear-to-r from-primary/5 to-secondary/5 border-border/30 group-hover:border-primary/50">
+        <span className="text-xl font-bold tracking-tight text-muted-foreground">
+          VS
+        </span>
       </div>
     );
   }
 
   // Date formatting
-  const matchDate = new Date(roundDate);
-  const formattedDate = matchDate.toLocaleDateString("en-GB", {
+  const finalDate =
+    matchDate || roundDate || new Date().toISOString().split("T")[0]; // Fallback to current date if both are missing
+  const formattedDate = new Date(finalDate).toLocaleDateString("en-GB", {
     weekday: "short",
     day: "numeric",
     month: "short",
@@ -642,29 +688,35 @@ function MatchCard({
         {/* Desktop View */}
         <div className="items-center justify-between hidden px-6 py-6 md:flex">
           <div className="flex items-center flex-1 gap-3">
-            <div className="w-10 h-10 p-1 rounded-lg bg-gradient-to-br from-primary/10">
+            <div className="w-10 h-10 p-1 rounded-lg bg-linear-to-br from-primary/10">
               <div className="flex items-center justify-center w-full h-full bg-white rounded shadow-sm">
-                <span className="text-xs font-bold">{match.homeTeam.name[0]}</span>
+                <span className="text-xs font-bold">
+                  {match.homeTeam.name[0]}
+                </span>
               </div>
             </div>
             <div>
-              <p className="font-semibold group-hover:text-primary">{match.homeTeam.name}</p>
+              <p className="font-semibold group-hover:text-primary">
+                {match.homeTeam.name}
+              </p>
               <p className="text-xs text-muted-foreground">HOME</p>
             </div>
           </div>
 
-          <div className="flex flex-col items-center px-6">
-            {scoreContent}
-          </div>
+          <div className="flex flex-col items-center px-6">{scoreContent}</div>
 
           <div className="flex items-center justify-end flex-1 gap-3">
             <div className="text-right">
-              <p className="font-semibold group-hover:text-primary">{match.awayTeam.name}</p>
+              <p className="font-semibold group-hover:text-primary">
+                {match.awayTeam.name}
+              </p>
               <p className="text-xs text-muted-foreground">AWAY</p>
             </div>
-            <div className="w-10 h-10 p-1 rounded-lg bg-gradient-to-br from-secondary/10">
+            <div className="w-10 h-10 p-1 rounded-lg bg-linear-to-br from-secondary/10">
               <div className="flex items-center justify-center w-full h-full bg-white rounded shadow-sm">
-                <span className="text-xs font-bold">{match.awayTeam.name[0]}</span>
+                <span className="text-xs font-bold">
+                  {match.awayTeam.name[0]}
+                </span>
               </div>
             </div>
           </div>
@@ -673,9 +725,11 @@ function MatchCard({
         {/* Mobile View */}
         <div className="p-4 space-y-3 md:hidden">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-gradient-to-br from-primary/10 p-0.5">
+            <div className="w-8 h-8 rounded bg-linear-to-br from-primary/10 p-0.5">
               <div className="flex items-center justify-center w-full h-full bg-white rounded">
-                <span className="text-xs font-bold">{match.homeTeam.name[0]}</span>
+                <span className="text-xs font-bold">
+                  {match.homeTeam.name[0]}
+                </span>
               </div>
             </div>
             <div className="flex-1">
@@ -684,18 +738,18 @@ function MatchCard({
             </div>
           </div>
 
-          <div className="flex flex-col items-center">
-            {scoreContent}
-          </div>
+          <div className="flex flex-col items-center">{scoreContent}</div>
 
           <div className="flex items-center justify-end gap-3">
             <div className="flex-1 text-right">
               <p className="font-semibold">{match.awayTeam.name}</p>
               <p className="text-xs text-muted-foreground">AWAY</p>
             </div>
-            <div className="w-8 h-8 rounded bg-gradient-to-br from-secondary/10 p-0.5">
+            <div className="w-8 h-8 rounded bg-linear-to-br from-secondary/10 p-0.5">
               <div className="flex items-center justify-center w-full h-full bg-white rounded">
-                <span className="text-xs font-bold">{match.awayTeam.name[0]}</span>
+                <span className="text-xs font-bold">
+                  {match.awayTeam.name[0]}
+                </span>
               </div>
             </div>
           </div>
@@ -710,7 +764,9 @@ function MatchCard({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Clock className="w-3.5 h-3.5" />
-              <span>{formattedDate} • {formattedTime}</span>
+              <span>
+                {formattedDate} • {formattedTime}
+              </span>
             </div>
             <div className="text-right">
               <span className="font-medium">Venue:</span> {match.venue}

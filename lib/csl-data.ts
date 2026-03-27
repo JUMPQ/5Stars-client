@@ -24,6 +24,7 @@ export type Match = {
     };
     time: string;
     venue: string;
+    date?: string; // Optional, can be used if matches have different dates within the same round
   }[];
 };
 
@@ -75,12 +76,12 @@ export const ALL_MATCHES: Match[] = [
     ],
   },
 
-  // ── GAMEWEEK 2 (add your real fixtures here) ──
+ // GAMEWEEK 2
   {
     id: "gw2",
     round: 2,
     name: "Gameweek 2",
-    date: "2025-11-22",
+    date: "2025-11-22",           // fallback for header
     status: "completed",
     matches: [
       {
@@ -91,6 +92,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 0,
         time: "16:00",
         venue: "Monoliza Field, Central Area, Abuja",
+        date: "2025-11-22"        // explicit date
       },
       {
         id: "m6",
@@ -100,6 +102,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 2,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+        date: "2025-11-22"
       },
       {
         id: "m7",
@@ -109,6 +112,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 2,
         time: "16:00",
         venue: "Monoliza Field, Central Area, Abuja",
+        date: "2025-11-23"        // last two on 23rd
       },
       {
         id: "m8",
@@ -118,10 +122,10 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 1,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+        date: "2025-11-23"
       },
     ],
   },
-
   // ── GAMEWEEK 3 ──
   {
     id: "gw3",
@@ -138,6 +142,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 1,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+         date: "2025-11-29"
       },
       {
         id: "m10",
@@ -147,6 +152,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 0,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+         date: "2025-11-29"
       },
       {
         id: "m11",
@@ -156,6 +162,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 1,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+         date: "2025-11-30"
       },
       {
         id: "m12",
@@ -165,6 +172,7 @@ export const ALL_MATCHES: Match[] = [
         awayScore: 2,
         time: "17:00",
         venue: "Monoliza Field, Central Area, Abuja",
+         date: "2025-11-30"
       },
     ],
   },
