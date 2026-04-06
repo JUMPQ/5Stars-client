@@ -19,6 +19,7 @@ import {
   BarChart,
   Layers,
   Clock,
+  Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -458,13 +459,12 @@ export default function LandingPage() {
             >
               Visit Dashboard
             </Link>
-            <Button
-              className="rounded-full"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Become a Coach
-              <ChevronRight className="ml-1 size-4" />
-            </Button>
+            <Link href="/events">
+              <Button className="rounded-full">
+                <Calendar color="#ffff" strokeWidth={2.5} /> Events
+                <ChevronRight className="ml-1 size-4" />
+              </Button>
+            </Link>
           </div>
           <div className="flex items-center gap-4 md:hidden">
             <Button
