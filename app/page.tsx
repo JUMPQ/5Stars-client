@@ -541,7 +541,7 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* Hero Section - Adapted for 5Stars */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
-          <div className="container px-4 md:px-6 relative">
+          <div className="container w-[95%] mx-auto px-4 md:px-6 relative">
             <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -621,7 +621,7 @@ export default function LandingPage() {
 
         {/* Features Section - Adapted */}
         <section id="features" className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container w-[95%] mx-auto px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -677,7 +677,7 @@ export default function LandingPage() {
         <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[4rem_4rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
-          <div className="container px-4 md:px-6 relative">
+          <div className="container w-[95%] mx-auto px-4 md:px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -743,7 +743,7 @@ export default function LandingPage() {
 
         {/* FAQ Section - Adapted */}
         <section id="faq" className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container w-[95%] mx-auto px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -831,7 +831,7 @@ export default function LandingPage() {
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
-          <div className="container px-4 md:px-6 relative">
+          <div className="container w-[95%] mx-auto px-4 md:px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -873,7 +873,7 @@ export default function LandingPage() {
         </section>
       </main>
       <footer className="w-full border-t bg-background/95 backdrop-blur-sm">
-        <div className="container flex flex-col gap-8 px-4 py-10 md:px-6 lg:py-16">
+        <div className="container w-[95%] mx-auto flex flex-col gap-8 px-4 py-10 md:px-6 lg:py-16">
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">

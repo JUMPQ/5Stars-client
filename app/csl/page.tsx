@@ -222,7 +222,7 @@ export default function CSLPage() {
             animate={{ opacity: 1, y: 0 }}
             className="absolute inset-x-0 border-b md:hidden top-16 bg-background/95 backdrop-blur-lg"
           >
-            <div className="container flex flex-col gap-4 py-4">
+            <div className="container w-[95%] mx-auto flex flex-col gap-4 py-4">
               <Button
                 variant="ghost"
                 className="justify-start"
