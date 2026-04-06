@@ -31,10 +31,27 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "next-themes";
-import { Toaster, toast } from "sonner"; 
+import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-function SuccessModal({ onClose }) {
+interface SuccessModalProps {
+  onClose: () => void;
+}
+
+interface RegistrationModalProps {
+  name: string;
+  setName: (value: string) => void;
+  email: string;
+  setEmail: (value: string) => void;
+  password: string;
+  setPassword: (value: string) => void;
+  isLoading: boolean;
+  error: string | null;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  onClose: () => void;
+}
+
+function SuccessModal({ onClose }: SuccessModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
       <div className="bg-[#222] p-8 rounded-xl border border-white/20 max-w-md w-full text-center">
@@ -83,7 +100,7 @@ function RegistrationModal({
   error,
   handleSubmit,
   onClose,
-}) {
+}: RegistrationModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
       <div className="bg-[#222] p-6 sm:p-8 rounded-xl border border-white/20 max-w-md w-full relative">
@@ -174,7 +191,7 @@ export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const router = useRouter();
 
@@ -245,7 +262,7 @@ export default function LandingPage() {
     },
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
@@ -259,7 +276,7 @@ export default function LandingPage() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -271,7 +288,7 @@ export default function LandingPage() {
       setPassword("");
       setRegistrationSuccess(true);
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : "Registration failed");
     } finally {
       setIsLoading(false);
     }
@@ -285,11 +302,11 @@ export default function LandingPage() {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
+          className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-black/10" />
           <div className="relative z-10 flex items-start space-x-4">
-            <div className="flex-shrink-0 pt-1">
+            <div className="shrink-0 pt-1">
               <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-white"
@@ -315,33 +332,33 @@ export default function LandingPage() {
             </div>
             <button
               onClick={() => toast.dismiss(t)}
-              className="ml-2 flex-shrink-0 text-white/70 hover:text-white transition-colors"
+              className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-white/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/30 to-transparent" />
         </motion.div>
       ),
       {
         duration: 5000,
         position: "top-right",
-      }
+      },
     );
   };
 
-  const showComingSoonToast = (feature) => {
+  const showComingSoonToast = (feature: "live" | "fixtures") => {
     toast.custom(
       (t) => (
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
+          className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-black/10" />
           <div className="relative z-10 flex items-start space-x-4">
-            <div className="flex-shrink-0 pt-1">
+            <div className="shrink-0 pt-1">
               <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                 <Clock className="w-6 h-6 text-white" />
               </div>
@@ -356,18 +373,18 @@ export default function LandingPage() {
             </div>
             <button
               onClick={() => toast.dismiss(t)}
-              className="ml-2 flex-shrink-0 text-white/70 hover:text-white transition-colors"
+              className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-white/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/30 to-transparent" />
         </motion.div>
       ),
       {
         duration: 5000,
         position: "top-right",
-      }
+      },
     );
   };
 
@@ -388,13 +405,13 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="flex min-h-[100dvh] flex-col">
+    <div className="flex min-h-dvh flex-col">
       <header
         className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
           isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"
         }`}
       >
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container w-[95%] mx-auto flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold">
             <div className="rounded-lg  flex items-center justify-center text-primary-foreground">
               <Image
@@ -472,7 +489,7 @@ export default function LandingPage() {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
           >
-            <div className="container py-4 flex flex-col gap-4">
+            <div className="container w-[95%] mx-auto py-4 flex flex-col gap-4">
               <div className="flex flex-col gap-2 border-b border-border/20 pb-4">
                 <Button
                   variant="ghost"
@@ -480,7 +497,7 @@ export default function LandingPage() {
                   className="justify-start h-12 px-4 text-left"
                   onClick={() => showComingSoonToast("fixtures")}
                 >
-                  <Zap className="w-5 h-5 mr-3 flex-shrink-0" />
+                  <Zap className="w-5 h-5 mr-3 shrink-0" />
                   Browse Fits and Match
                 </Button>
                 <Button
@@ -489,7 +506,7 @@ export default function LandingPage() {
                   className="justify-start h-12 px-4 text-left"
                   onClick={() => showComingSoonToast("live")}
                 >
-                  <Clock className="w-5 h-5 mr-3 flex-shrink-0" />
+                  <Clock className="w-5 h-5 mr-3 shrink-0" />
                   View Live Matches
                 </Button>
                 <Button
@@ -498,7 +515,7 @@ export default function LandingPage() {
                   className="justify-start h-12 px-4 text-left"
                   onClick={() => router.push("/csl")}
                 >
-                  <Star className="w-5 h-5 mr-3 flex-shrink-0" /> CSL
+                  <Star className="w-5 h-5 mr-3 shrink-0" /> CSL
                 </Button>
               </div>
               <div className="flex flex-col gap-2 pt-2 border-t">
@@ -525,8 +542,7 @@ export default function LandingPage() {
         {/* Hero Section - Adapted for 5Stars */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
           <div className="container px-4 md:px-6 relative">
-            <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-
+            <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -539,7 +555,7 @@ export default function LandingPage() {
               >
                 Launching Now
               </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/70">
                 Join the 5Stars Football Leagues
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -586,7 +602,7 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative mx-auto max-w-5xl"
             >
-              <div className="rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-gradient-to-b from-background to-muted/20">
+              <div className="rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-linear-to-b from-background to-muted/20">
                 <Image
                   src="/place.png"
                   width={1280}
@@ -597,8 +613,8 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/10 dark:ring-white/10"></div>
               </div>
-              <div className="absolute -bottom-6 -right-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl opacity-70"></div>
-              <div className="absolute -top-6 -left-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-secondary/30 to-primary/30 blur-3xl opacity-70"></div>
+              <div className="absolute -bottom-6 -right-6 -z-10 h-75 w-75 rounded-full bg-linear-to-br from-primary/30 to-secondary/30 blur-3xl opacity-70"></div>
+              <div className="absolute -top-6 -left-6 -z-10 h-75 w-75 rounded-full bg-linear-to-br from-secondary/30 to-primary/30 blur-3xl opacity-70"></div>
             </motion.div>
           </div>
         </section>
@@ -622,9 +638,10 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Everything You Need for Your Team
               </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+              <p className="max-w-200 text-muted-foreground md:text-lg">
+                {" "}
                 Our platform provides tools to manage teams, track matches, and
-                engage in the 5Stars football Consultancy
+                engage in the 5Stars football Consultancy
               </p>
             </motion.div>
 
@@ -637,7 +654,7 @@ export default function LandingPage() {
             >
               {features.map((feature, i) => (
                 <motion.div key={i} variants={item}>
-                  <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+                  <Card className="h-full overflow-hidden border-border/40 bg-linear-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
                     <CardContent className="p-6 flex flex-col h-full">
                       <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
                         {feature.icon}
@@ -658,7 +675,7 @@ export default function LandingPage() {
 
         {/* How It Works Section - Adapted */}
         <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-size[4rem_4rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
           <div className="container px-4 md:px-6 relative">
             <motion.div
@@ -677,13 +694,13 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Simple Process to Join the Leagues
               </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+              <p className="max-w-200 text-muted-foreground md:text-lg">
                 Get your team registered and start competing in minutes.
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
-              <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
+              <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
 
               {[
                 {
@@ -713,7 +730,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="relative z-10 flex flex-col items-center text-center space-y-4"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
                     {step.step}
                   </div>
                   <h3 className="text-xl font-bold">{step.title}</h3>
@@ -743,7 +760,7 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Frequently Asked Questions
               </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+              <p className="max-w-200 text-muted-foreground md:text-lg">
                 Find answers to common questions about the 5Stars platform.
               </p>
             </motion.div>
@@ -809,8 +826,8 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Section - Updated with toast handler */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <section className="w-full py-20 md:py-32 bg-linear-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size[4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
@@ -825,7 +842,7 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
                 Ready to Join 5Stars?
               </h2>
-              <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">
+              <p className="mx-auto max-w-175 text-primary-foreground/80 md:text-xl">
                 Register your team today and compete in Nigeria's top grassroots
                 football league.
               </p>
@@ -860,7 +877,7 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">
-                <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
+                <div className="size-8 rounded-lg bg-linear-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
                   5S
                 </div>
                 <span>5Stars</span>
