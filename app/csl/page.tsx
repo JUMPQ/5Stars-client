@@ -19,7 +19,7 @@ import {
 import { useTheme } from "next-themes";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
-
+import Header from "@/components/ui/header";
 // Import the new structured data
 import { ALL_MATCHES, GROUPS, type Match } from "@/lib/csl-data";
 
@@ -148,119 +148,7 @@ export default function CSLPage() {
   return (
     <div className="flex min-h-dvh flex-col">
       {/* HEADER - unchanged */}
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}
-      >
-        {/* ... (your existing header code remains exactly the same) ... */}
-        <div className="container w-[95%] mx-auto flex items-center justify-between h-16">
-          <div className="flex items-center gap-2 font-bold">
-            <Image
-              src="/5Stars.png"
-              alt="5Stars Logo"
-              width={122}
-              height={122}
-            />
-          </div>
-          <div className="items-center hidden gap-2 lg:flex">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full"
-              onClick={() => showComingSoonToast("fixtures")}
-            >
-              <Zap className="w-4 h-4 mr-2" /> Browse Fits and Match
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full"
-              onClick={() => showComingSoonToast("live")}
-            >
-              <Clock className="w-4 h-4 mr-2" /> View Live Matches
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full"
-              onClick={() => router.push("/csl")}
-            >
-              <Star className="w-4 h-4 mr-2" /> CSL
-            </Button>
-          </div>
-          <div className="items-center hidden gap-4 md:flex">
-            <a
-              href="https://team.5Starsteams.com"
-              target="_blank"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Visit Dashboard
-            </a>
-            <Button
-              className="rounded-full"
-              onClick={() => showComingSoonToast("coach")}
-            >
-              Become a Coach <ChevronRight className="ml-1 size-4" />
-            </Button>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen((v) => !v)}
-          >
-            {mobileMenuOpen ? (
-              <X className="size-5" />
-            ) : (
-              <Menu className="size-5" />
-            )}
-          </Button>
-        </div>
-
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute inset-x-0 border-b md:hidden top-16 bg-background/95 backdrop-blur-lg"
-          >
-            <div className="container w-[95%] mx-auto flex flex-col gap-4 py-4">
-              <Button
-                variant="ghost"
-                className="justify-start"
-                onClick={() => showComingSoonToast("fixtures")}
-              >
-                <Zap className="w-5 h-5 mr-3" /> Browse Fits and Match
-              </Button>
-              <Button
-                variant="ghost"
-                className="justify-start"
-                onClick={() => showComingSoonToast("live")}
-              >
-                <Clock className="w-5 h-5 mr-3" /> View Live Matches
-              </Button>
-              <Button
-                variant="ghost"
-                className="justify-start"
-                onClick={() => router.push("/csl")}
-              >
-                <Star className="w-5 h-5 mr-3" /> CSL
-              </Button>
-              <a
-                href="https://team.5Starsteams.com"
-                target="_blank"
-                className="py-2 text-sm font-medium"
-              >
-                Visit Team Dashboard
-              </a>
-              <Button
-                className="rounded-full"
-                onClick={() => showComingSoonToast("coach")}
-              >
-                Become a Coach <ChevronRight className="ml-1 size-4" />
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </header>
+    <Header />
 
       {/* HERO SECTION - unchanged */}
       <section className="w-full py-20 overflow-hidden md:py-32 lg:py-40">

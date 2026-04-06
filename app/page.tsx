@@ -21,7 +21,6 @@ import {
   Clock,
   Calendar,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
@@ -32,9 +31,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "next-themes";
-import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
-
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+// import Header from "@/components/ui/header";
+import Header from "@/components/ui/header";
 interface SuccessModalProps {
   onClose: () => void;
 }
@@ -182,10 +183,8 @@ function RegistrationModal({
 }
 
 export default function LandingPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
@@ -194,21 +193,8 @@ export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const router = useRouter();
 
-  useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+ 
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -295,99 +281,60 @@ export default function LandingPage() {
     }
   };
 
-  // Handle View Live Matches - Show coming soon toast
-  const handleViewLiveMatches = () => {
-    toast.custom(
-      (t) => (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="relative z-10 flex items-start space-x-4">
-            <div className="shrink-0 pt-1">
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+  //  Handle View Live Matches - Show coming soon toast
+    const handleViewLiveMatches = () => {
+      toast.custom(
+        (t) => (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-black/10" />
+            <div className="relative z-10 flex items-start space-x-4">
+              <div className="shrink-0 pt-1">
+                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
               </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold mb-1">Coming Soon!</h3>
+                <p className="text-sm opacity-90">
+                  Live match tracking is launching very soon. Stay tuned for
+                  real-time scores and updates!
+                </p>
+              </div>
+              <button
+                onClick={() => toast.dismiss(t)}
+                className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold mb-1">Coming Soon!</h3>
-              <p className="text-sm opacity-90">
-                Live match tracking is launching very soon. Stay tuned for
-                real-time scores and updates!
-              </p>
-            </div>
-            <button
-              onClick={() => toast.dismiss(t)}
-              className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/30 to-transparent" />
-        </motion.div>
-      ),
-      {
-        duration: 5000,
-        position: "top-right",
-      },
-    );
-  };
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/30 to-transparent" />
+          </motion.div>
+        ),
+        {
+          duration: 5000,
+          position: "top-right",
+        },
+      );
+    };
 
-  const showComingSoonToast = (feature: "live" | "fixtures") => {
-    toast.custom(
-      (t) => (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="relative z-10 flex items-start space-x-4">
-            <div className="shrink-0 pt-1">
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                <Clock className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold mb-1">Coming Soon!</h3>
-              <p className="text-sm opacity-90">
-                {feature === "live"
-                  ? "Live match tracking is launching very soon. Stay tuned for real-time scores and updates!"
-                  : "Fits and Match is coming soon. Get ready to explore the catalogue!"}
-              </p>
-            </div>
-            <button
-              onClick={() => toast.dismiss(t)}
-              className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/30 to-transparent" />
-        </motion.div>
-      ),
-      {
-        duration: 5000,
-        position: "top-right",
-      },
-    );
-  };
+
 
   const handleSuccessClose = () => {
     setRegistrationSuccess(false);
@@ -407,137 +354,7 @@ export default function LandingPage() {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
-          isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"
-        }`}
-      >
-        <div className="container w-[95%] mx-auto flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold">
-            <div className="rounded-lg  flex items-center justify-center text-primary-foreground">
-              <Image
-                src="/5Stars.png"
-                alt="5Stars Logo"
-                width={122}
-                height={122}
-              />
-            </div>
-          </div>
-          <div className="hidden lg:flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
-              onClick={() => showComingSoonToast("fixtures")}
-            >
-              <Zap className="w-4 h-4 mr-2" />
-              Browse Fits and Match
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
-              onClick={() => showComingSoonToast("live")}
-            >
-              <Clock className="w-4 h-4 mr-2" />
-              View Live Matches
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
-              onClick={() => router.push("/csl")}
-            >
-              <Star className="w-4 h-4 mr-2" /> CSL
-            </Button>
-          </div>
-          <div className="hidden md:flex gap-4 items-center">
-            <Link
-              href="https://team.5Starsteams.com"
-              target="_blank"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Visit Dashboard
-            </Link>
-            <Link href="/events">
-              <Button className="rounded-full">
-                <Calendar color="#ffff" strokeWidth={2.5} /> Events
-                <ChevronRight className="ml-1 size-4" />
-              </Button>
-            </Link>
-          </div>
-          <div className="flex items-center gap-4 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="size-5" />
-              ) : (
-                <Menu className="size-5" />
-              )}
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </div>
-        </div>
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
-          >
-            <div className="container w-[95%] mx-auto py-4 flex flex-col gap-4">
-              <div className="flex flex-col gap-2 border-b border-border/20 pb-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start h-12 px-4 text-left"
-                  onClick={() => showComingSoonToast("fixtures")}
-                >
-                  <Zap className="w-5 h-5 mr-3 shrink-0" />
-                  Browse Fits and Match
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start h-12 px-4 text-left"
-                  onClick={() => showComingSoonToast("live")}
-                >
-                  <Clock className="w-5 h-5 mr-3 shrink-0" />
-                  View Live Matches
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start h-12 px-4 text-left"
-                  onClick={() => router.push("/csl")}
-                >
-                  <Star className="w-5 h-5 mr-3 shrink-0" /> CSL
-                </Button>
-              </div>
-              <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link
-                  href="https://team.5Starsteams.com"
-                  target="_blank"
-                  className="py-2 text-sm font-medium"
-                >
-                  Visit Team Dashboard
-                </Link>
-                <Button
-                  className="rounded-full"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Become a Coach
-                  <ChevronRight className="ml-1 size-4" />
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </header>
+   <Header />
       <main className="flex-1">
         {/* Hero Section - Adapted for 5Stars */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
@@ -1046,20 +863,7 @@ export default function LandingPage() {
         </>
       )}
 
-      {/* Toast Container */}
-      <Toaster
-        position="top-right"
-        richColors
-        closeButton
-        expand={false}
-        visibleToasts={1}
-        toastOptions={{
-          className: "backdrop-blur-lg",
-          style: {
-            color: "hsl(var(--foreground))",
-          },
-        }}
-      />
+     
     </div>
   );
 }
