@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 interface HeaderProps {
-  onOpenRegistrationModal?: () => void;   // ← NEW
+  onOpenRegistrationModal?: () => void; // ← NEW
 }
 
 const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
@@ -81,7 +81,7 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
       },
     );
   };
- 
+
   return (
     <div>
       <header
@@ -203,19 +203,19 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
                 >
                   Visit Team Dashboard
                 </Link>
-                <Button
-                  className="rounded-full"
-                >
-                  <Calendar color="#ffff" strokeWidth={2.5} /> Events
-                  <ChevronRight className="ml-1 size-4" />
-                </Button>
+                <Link href="/events">
+                  <Button className="rounded-full w-full">
+                    <Calendar color="#ffff" strokeWidth={2.5} /> Events
+                    <ChevronRight className="ml-1 size-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
         )}
       </header>
 
-       {/* Toast Container */}
+      {/* Toast Container */}
       <Toaster
         position="top-right"
         richColors
