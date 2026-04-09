@@ -29,7 +29,7 @@ const EventsPage = () => {
               </p>
               <h1 className="max-w-3xl text-4xl font-semibold sm:text-5xl">
                 Join us for unforgettable moments, live experiences, and
-                <span className="text-red-600"> community connections.</span>
+                <span className="text-primary"> community connections.</span>
               </h1>
               <p className="mt-4 max-w-2xl text-base text-white/90 sm:text-lg">
                 Discover curated events designed to inspire, entertain, and
@@ -42,11 +42,11 @@ const EventsPage = () => {
         {/* 5VIES STAR MAGAZINE SECTION */}
         <section>
           <div className="container  w-[95%] mx-auto px-6 py-12">
-            <h2 className="text-3xl font-bold text-center">
+            <h2 className="text-3xl font-bold text-center mb-4 lg:text-5xl">
               5ive times magazine
             </h2>
-            <h3 className="text-xl font-semibold text-center mb-4">
-              match new & highlights
+            <h3 className="text-xl font-bold text-center mb-4 uppercase ">
+              match news & <span className="text-primary">highlights</span>
             </h3>
             <div className="border overflow-hidden rounded-2xl  border-gray-200 shadow-md">
               <div className="relative w-full overflow-hidden rounded-t-2xl bg-black">
@@ -58,7 +58,7 @@ const EventsPage = () => {
                       height={900}
                       src="/thumbnail-img.png"
                       alt="Football training video preview"
-                      className=" w-full object-cover object-center"
+                      className=" w-full  object-cover lg:h-150"
                     />
 
                     {/* Overlay */}
@@ -78,7 +78,7 @@ const EventsPage = () => {
                     controls
                     autoPlay
                     onEnded={() => setPlayVideo(false)}
-                    className=" w-full "
+                    className=" w-full object-cover object-center h-150"
                   >
                     <source src="/promotion-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -86,14 +86,14 @@ const EventsPage = () => {
                 )}
               </div>
               <div className="flex flex-col items-center h-75 justify-center">
-                <h2 className="text-center mb-4 uppercase font-bold  lg:text-4xl">
+                <h2 className="text-center  mb-4 uppercase font-bold  lg:text-4xl">
                   Corporate stars league 2026 is here
                 </h2>
-                <p className="text-center mb-4 max-w-xl">
+                <p className="text-center text-muted-foreground mb-4 max-w-xl">
                   We went from drafting deadlines emails,paying courtsey calls
                   to drafting the ultimate starting XI.
                 </p>
-                <p className="text-center">
+                <p className="text-center text-primary font-bold">
                   LAGOS, HERE IS YOUR 2026 CSL ROSTER!
                 </p>
               </div>
