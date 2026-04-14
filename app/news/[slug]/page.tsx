@@ -41,10 +41,7 @@ export default function NewsArticle({ params }: { params: { slug: string } }) {
           )}
         </div>
 
-        {/* Meta */}
-        <div className="mb-4 text-sm text-muted-foreground">
-          {article.location} • {article.isVideo ? "Video" : "Article"}
-        </div>
+       
 
         {/* Title */}
         <h1 className="text-3xl md:text-5xl font-bold mb-6 uppercase">

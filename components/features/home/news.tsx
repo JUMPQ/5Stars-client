@@ -157,17 +157,7 @@ const NewsSection = () => {
 
                         {/* Text Content */}
                         <div className="flex flex-col justify-center lg:w-1/2 py-4">
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-                              {slide.location}
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                              •
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                              {slide.isVideo ? "Video" : "Article"}
-                            </span>
-                          </div>
+              
 
                           <h2 className="mb-4 uppercase font-bold text-3xl lg:text-5xl">
                             {slide.title}{" "}
