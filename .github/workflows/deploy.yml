@@ -59,3 +59,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "out/*"
           target: "/home/fivestarsteams/public_html"
+          strip_components: 1
