@@ -14,31 +14,37 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Setup Node 22 + PNPM properly
+      # 2. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
 
+      # 3. Enable Corepack (IMPORTANT)
+      - name: Enable Corepack
+        run: corepack enable
+
+      # 4. Activate pnpm
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+        run: corepack prepare pnpm@9.0.0 --activate
 
-      # 3. Install deps
+      # 5. Verify pnpm works
+      - name: Check pnpm version
+        run: pnpm -v
+
+      # 6. Install deps
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 4. Build
+      # 7. Build
       - name: Build Next.js
         run: pnpm build
 
-      # 5. Export
+      # 8. Export static files
       - name: Export static files
         run: pnpm export
 
-      # 6. Clean server
+      # 9. Clean server
       - name: Clean server folder
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -48,7 +54,7 @@ jobs:
           script: |
             rm -rf /home/fivestarsteams/public_html/*
 
-      # 7. Upload
+      # 10. Upload
       - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
         with:
