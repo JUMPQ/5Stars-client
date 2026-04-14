@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 22
 
-      # 3. Enable Corepack (IMPORTANT)
+      # 3. Enable Corepack (pnpm)
       - name: Enable Corepack
         run: corepack enable
 
@@ -32,19 +32,15 @@ jobs:
       - name: Check pnpm version
         run: pnpm -v
 
-      # 6. Install deps
+      # 6. Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 7. Build
+      # 7. Build Next.js (THIS generates /out because of output: 'export')
       - name: Build Next.js
         run: pnpm build
 
-      # 8. Export static files
-      - name: Export static files
-        run: pnpm export
-
-      # 9. Clean server
+      # 8. Clean server folder
       - name: Clean server folder
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -54,7 +50,7 @@ jobs:
           script: |
             rm -rf /home/fivestarsteams/public_html/*
 
-      # 10. Upload
+      # 9. Upload static export
       - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
         with:
