@@ -1,10 +1,11 @@
 import type React from "react";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Lexend  } from "next/font/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
+const lexend = Lexend({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "5stars Football Consultancy",
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>{children}</body>
+      <body className={lexend.className}>{children}</body>
     </html>
   );
 }

@@ -19,7 +19,7 @@ import {
 import { useTheme } from "next-themes";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
-import Header from "@/components/ui/header";
+import Header from "@/components/layout/header";
 // Import the new structured data
 import { ALL_MATCHES, GROUPS, type Match } from "@/lib/csl-data";
 
@@ -148,7 +148,7 @@ export default function CSLPage() {
   return (
     <div className="flex min-h-dvh flex-col">
       {/* HEADER - unchanged */}
-    <Header />
+      <Header />
 
       {/* HERO SECTION - unchanged */}
       <section className="w-full py-20 overflow-hidden md:py-32 lg:py-40">

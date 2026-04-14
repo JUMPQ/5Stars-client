@@ -92,12 +92,15 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
         <div className="container w-[95%] mx-auto flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold">
             <div className="rounded-lg  flex items-center justify-center text-primary-foreground">
-              <Image
-                src="/5Stars.png"
-                alt="5Stars Logo"
-                width={122}
-                height={122}
-              />
+              <Link href="/">
+                <Image
+                  src="/5Stars.png"
+                  alt="5Stars Logo"
+                  width={122}
+                  height={122}
+                  priority
+                />
+              </Link>
             </div>
           </div>
           <div className="hidden lg:flex items-center gap-2">
@@ -110,40 +113,30 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
               <Zap className="w-4 h-4 mr-2" />
               Browse Fits and Match
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
-              onClick={() => showComingSoonToast("live")}
+            <Link
+              href="https://fivescores.com"
+              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all flex items-center"
             >
               <Clock className="w-4 h-4 mr-2" />
               View Live Matches
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
-              onClick={() => router.push("/csl")}
+            </Link>
+            <Link
+              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all flex items-center"
+              href="https://fivescores.com/competitions/season/ldOIi4sSzKhBY8mBaezC"
             >
               <Star className="w-4 h-4 mr-2" /> CSL
-            </Button>
+            </Link>
           </div>
-          <div className="hidden md:flex gap-4 items-center">
+          <div className="hidden lg:flex gap-4 items-center">
             <Link
               href="https://team.5Starsteams.com"
               target="_blank"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium bg-destructive text-white  hover:bg-destructive/90 h-11 px-4  transition-colors flex items-center rounded-md"
             >
               Visit Dashboard
             </Link>
-            <Link href="/events">
-              <Button className="rounded-full">
-                <Calendar color="#ffff" strokeWidth={2.5} /> Events
-                <ChevronRight className="ml-1 size-4" />
-              </Button>
-            </Link>
           </div>
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 lg:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -164,7 +157,7 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
+            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b z-80"
           >
             <div className="container w-[95%] mx-auto py-4 flex flex-col gap-4">
               <div className="flex flex-col gap-2 border-b border-border/20 pb-4">
@@ -202,12 +195,6 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
                   className="py-2 text-sm font-medium"
                 >
                   Visit Team Dashboard
-                </Link>
-                <Link href="/events">
-                  <Button className="rounded-full w-full">
-                    <Calendar color="#ffff" strokeWidth={2.5} /> Events
-                    <ChevronRight className="ml-1 size-4" />
-                  </Button>
                 </Link>
               </div>
             </div>

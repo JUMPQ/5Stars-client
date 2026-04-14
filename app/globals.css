@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import "tailwindcss";
 @theme {
   /* Container */
@@ -44,6 +45,9 @@
   --radius-md: calc(var(--radius) - 0.125rem);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 0.25rem);
+
+  /* Font */
+  --font-base: 'Lexend', sans-serif;
 }
 
 @variant dark (&:is(.dark *));
@@ -124,8 +128,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: Arial, Helvetica, sans-serif;
+    @apply bg-background text-foreground font-base;
   }
 }
 
