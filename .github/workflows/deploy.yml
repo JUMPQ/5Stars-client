@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
+      # 1. Checkout
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -19,21 +19,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: 'pnpm'
 
-      # 3. Install deps
+      # 3. Install PNPM
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 4. Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
-      # 4. Build
+      # 5. Build
       - name: Build Next.js
-        run: npm run build
+        run: pnpm build
 
-      # 5. Export static site
+      # 6. Export static
       - name: Export static files
-        run: npm run export
+        run: pnpm export
 
-      # 6. Clean server directory
+      # 7. Clean server
       - name: Clean server folder
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -43,7 +47,7 @@ jobs:
           script: |
             rm -rf /home/fivestarsteams/public_html/*
 
-      # 7. Upload files
+      # 8. Upload
       - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
         with:
