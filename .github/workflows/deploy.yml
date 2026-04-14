@@ -1,0 +1,54 @@
+name: Build & Deploy (Next.js Static)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node 22
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      # 3. Install deps
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Build
+      - name: Build Next.js
+        run: npm run build
+
+      # 5. Export static site
+      - name: Export static files
+        run: npm run export
+
+      # 6. Clean server directory
+      - name: Clean server folder
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rm -rf /home/fivestarsteams/public_html/*
+
+      # 7. Upload files
+      - name: Upload to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "out/*"
+          target: "/home/fivestarsteams/public_html"
