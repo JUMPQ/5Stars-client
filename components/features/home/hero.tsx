@@ -8,19 +8,19 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
     <section className="w-full overflow-hidden">
       <div className="relative">
         {/* Background Image (NO animation) */}
-        <div className="h-125 relative w-full md:h-150">
+        <div className="relative w-full h-125 md:h-150">
           <Image
-            src={"/hero-image.jpg"}
+            src={"/hero-image.JPG"}
             priority
             width={1280}
             height={720}
             alt=""
-            className="absolute w-full h-full object-cover object-center"
+            className="absolute object-cover object-center w-full h-full"
           />
         </div>
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 z-10 bg-black/50" />
 
         {/* Text Content (ANIMATED) */}
         <div className="absolute inset-0 z-20 flex items-center">
@@ -32,19 +32,19 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="max-w-3xl"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6 text-white">
+              <h1 className="mb-6 text-4xl font-extrabold tracking-tighter text-white md:text-6xl lg:text-7xl">
                 Join the
-                <span className="text-primary font-extrabold"> 5Stars</span>
+                <span className="font-extrabold text-primary"> 5Stars</span>
                 Football Leagues
               </h1>
 
-              <p className="text-lg md:text-xl mb-8 text-white">
+              <p className="mb-8 text-lg text-white md:text-xl">
                 The ultimate platform for grassroots football in Nigeria.
                 Register your team, manage players, track live scores, and
                 compete in exciting tournaments.
               </p>
 
-              <div className="flex sm:flex-row gap-4">
+              <div className="flex gap-4 sm:flex-row">
                 <Button
                   size="default"
                   className="h-12 text-base"

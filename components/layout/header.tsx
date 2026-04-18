@@ -48,17 +48,17 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-linear-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-2xl shadow-2xl border border-white/20 max-w-sm mx-auto backdrop-blur-sm relative overflow-hidden"
+          className="relative max-w-sm p-6 mx-auto overflow-hidden text-white border shadow-2xl bg-linear-to-r from-yellow-500 to-orange-500 rounded-2xl border-white/20 backdrop-blur-sm"
         >
           <div className="absolute inset-0 bg-black/10" />
           <div className="relative z-10 flex items-start space-x-4">
-            <div className="shrink-0 pt-1">
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <div className="pt-1 shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-xl">
                 <Clock className="w-6 h-6 text-white" />
               </div>
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold mb-1">Coming Soon!</h3>
+              <h3 className="mb-1 text-lg font-bold">Coming Soon!</h3>
               <p className="text-sm opacity-90">
                 {feature === "live"
                   ? "Live match tracking is launching very soon. Stay tuned for real-time scores and updates!"
@@ -67,7 +67,7 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
             </div>
             <button
               onClick={() => toast.dismiss(t)}
-              className="ml-2 shrink-0 text-white/70 hover:text-white transition-colors"
+              className="ml-2 transition-colors shrink-0 text-white/70 hover:text-white"
             >
               <X className="w-5 h-5" />
             </button>
@@ -91,7 +91,7 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
       >
         <div className="container w-[95%] mx-auto flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold">
-            <div className="rounded-lg  flex items-center justify-center text-primary-foreground">
+            <div className="flex items-center justify-center rounded-lg text-primary-foreground">
               <Link href="/">
                 <Image
                   src="/5Stars.png"
@@ -103,11 +103,11 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="items-center hidden gap-2 lg:flex">
             <Button
               variant="ghost"
               size="sm"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all"
+              className="h-10 px-4 text-sm font-medium transition-all rounded-full hover:bg-primary/5"
               onClick={() => showComingSoonToast("fixtures")}
             >
               <Zap className="w-4 h-4 mr-2" />
@@ -115,23 +115,23 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
             </Button>
             <Link
               href="https://fivescores.com"
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all flex items-center"
+              className="flex items-center h-10 px-4 text-sm font-medium transition-all rounded-full hover:bg-primary/5"
             >
               <Clock className="w-4 h-4 mr-2" />
               View Live Matches
             </Link>
             <Link
-              className="rounded-full h-10 px-4 text-sm font-medium hover:bg-primary/5 transition-all flex items-center"
+              className="flex items-center h-10 px-4 text-sm font-medium transition-all rounded-full hover:bg-primary/5"
               href="https://fivescores.com/competitions/season/ldOIi4sSzKhBY8mBaezC"
             >
               <Star className="w-4 h-4 mr-2" /> CSL
             </Link>
           </div>
-          <div className="hidden lg:flex gap-4 items-center">
+          <div className="items-center hidden gap-4 lg:flex">
             <Link
               href="https://team.5Starsteams.com"
               target="_blank"
-              className="text-sm font-medium bg-destructive text-white  hover:bg-destructive/90 h-11 px-4  transition-colors flex items-center rounded-md"
+              className="flex items-center px-4 text-sm font-medium text-white transition-colors rounded-md bg-destructive hover:bg-destructive/90 h-11"
             >
               Visit Dashboard
             </Link>
@@ -157,10 +157,10 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b z-80"
+            className="absolute inset-x-0 border-b lg:hidden top-16 bg-background/95 backdrop-blur-lg z-80"
           >
             <div className="container w-[95%] mx-auto py-4 flex flex-col gap-4">
-              <div className="flex flex-col gap-2 border-b border-border/20 pb-4">
+              <div className="flex flex-col gap-2 pb-4 border-b border-border/20">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -170,23 +170,19 @@ const Header = ({ onOpenRegistrationModal }: HeaderProps) => {
                   <Zap className="w-5 h-5 mr-3 shrink-0" />
                   Browse Fits and Match
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start h-12 px-4 text-left"
-                  onClick={() => showComingSoonToast("live")}
+                <Link
+                  href="https://fivescores.com"
+                  className="flex items-center h-10 gap-3 px-4 text-sm font-medium transition-all rounded-full hover:bg-primary/5"
                 >
-                  <Clock className="w-5 h-5 mr-3 shrink-0" />
+                  <Clock className="w-4 h-4 mr-2" />
                   View Live Matches
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start h-12 px-4 text-left"
-                  onClick={() => router.push("/csl")}
+                </Link>
+                <Link
+                  className="flex items-center h-10 gap-3 px-4 text-sm font-medium transition-all rounded-full hover:bg-primary/5"
+                  href="https://fivescores.com/competitions/season/ldOIi4sSzKhBY8mBaezC"
                 >
-                  <Star className="w-5 h-5 mr-3 shrink-0" /> CSL
-                </Button>
+                  <Star className="w-4 h-4 mr-2" /> CSL
+                </Link>
               </div>
               <div className="flex flex-col gap-2 pt-2 border-t">
                 <Link
