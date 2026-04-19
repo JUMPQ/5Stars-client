@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "5stars Football Consultancy",
     images: [
       {
-        url: "https://5starsteams.com/logo.png",     // ← Change to your actual logo URL
+        url: "https://5starsteams.com/5Stars.png",     // ← Change to your actual logo URL
         width: 1200,
         height: 630,
         alt: "5stars Football Consultancy Logo",
