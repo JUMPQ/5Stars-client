@@ -14,6 +14,22 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  openGraph: {
+    title: "5stars Football Consultancy",
+    description: "The ultimate platform for grassroots football in Nigeria.",
+    url: "https://5starsteams.com",
+    siteName: "5stars Football Consultancy",
+    images: [
+      {
+        url: "https://5starsteams.com/logo.png",     // ← Change to your actual logo URL
+        width: 1200,
+        height: 630,
+        alt: "5stars Football Consultancy Logo",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
