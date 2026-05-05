@@ -23,7 +23,7 @@ export const newsArticles = [
   {
     id: 3,
     slug: "academy-league-season-3",
-    thumbnail: "/thumbnail-img.png",
+    thumbnail: "/academy-league-thumbnail.jpeg",
     video: "/academy-league.mp4",
       highlight: "Season 3",            // <-- you also forgot highlight here
 
